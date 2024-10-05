@@ -7,7 +7,7 @@ interface Post {
 export default async function Page() {
   const posts: Post[] = await fetch(`https://api.vercel.app/blog`).then((res) => res.json());
   return posts.map((post) => (
-    <main>
+    <main key={post.id}>
     <h1>{post.title}</h1>
     <p>{post.content}</p>
   </main>
