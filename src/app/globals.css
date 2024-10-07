@@ -25,3 +25,11 @@ body {
     text-wrap: balance;
   }
 }
+
+main {
+  padding: 1.5rem;
+}
+
+main a {
+  color: lightblue;
+}

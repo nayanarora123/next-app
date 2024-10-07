@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { notFound } from "next/navigation"
 
 interface Post {
@@ -24,8 +25,8 @@ export async function generateStaticParams() {
   }))
 }
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const post = await fetch(`https://api.vercel.app/blog/${params.id}`).then(
+export default async function Page({ params }: { params: { blogId: string } }) {
+  const post = await fetch(`https://api.vercel.app/blog/${params.blogId}`).then(
     (res) => res.json()
   )
 
@@ -34,9 +35,15 @@ export default async function Page({ params }: { params: { id: string } }) {
   }
 
   return (
-    <main>
+    <main className="">
       <h1>{post.title}</h1>
       <p>{post.content}</p>
+
+      <div className="pt-2">
+        {[...Array(5).keys()].map(i =>
+          <Link className="block" key={i} href={`/blogs/${params.blogId}/comments/${i+1}`}>Comment {i+1}</Link>
+        )}
+      </div>
     </main>
   )
 }
