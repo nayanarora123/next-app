@@ -7,6 +7,11 @@ const nextConfig = {
               hostname: 'tailwindui.com',
               pathname: '/plus/img/logos/**',
             },
+            {
+              protocol: 'https',
+              hostname: 'nextjs.org',
+              pathname: '/icons/**',
+            },
         ],
         dangerouslyAllowSVG: true,
     },
