@@ -1,4 +1,4 @@
-export function Page({params}: {
+export default function Page({params}: {
     params: {
         slug: string[]
     }
@@ -14,5 +14,3 @@ export function Page({params}: {
 
     return ( <main>This is a doc&apos;s Page.</main> );
 }
-
-export default Page;
