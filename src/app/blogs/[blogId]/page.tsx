@@ -1,10 +1,17 @@
-import Link from "next/link"
-import { notFound } from "next/navigation"
+import Link from "next/link";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 interface Post {
   id: string
   title: string
   content: string
+}
+
+type Props = {
+  params: {
+    blogId: string
+  }
 }
 
 // Next.js will invalidate the cache when a
@@ -25,7 +32,19 @@ export async function generateStaticParams() {
   }))
 }
 
-export default async function Page({ params }: { params: { blogId: string } }) {
+export const generateMetadata = async ({
+  params
+}: Props): Promise<Metadata> => {
+  const title = await new Promise<string>((resolve, reject) => {
+    setTimeout(() => resolve(`Blog ${params.blogId}`), 1000);
+  });
+  return {
+    title 
+  }
+}
+
+
+export default async function Page({ params }: Props) {
   const post = await fetch(`https://api.vercel.app/blog/${params.blogId}`).then(
     (res) => res.json()
   )
