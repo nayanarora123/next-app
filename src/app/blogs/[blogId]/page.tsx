@@ -35,7 +35,7 @@ export async function generateStaticParams() {
 export const generateMetadata = async ({
   params
 }: Props): Promise<Metadata> => {
-  const title = await new Promise<string>((resolve, reject) => {
+  const title = await new Promise<string>(resolve => {
     setTimeout(() => resolve(`Blog ${params.blogId}`), 1000);
   });
   return {
